@@ -217,7 +217,7 @@ if __name__ == '__main__':
 		logging_file = logging_file,
 		summary_file = summary_file,
 		verbose = options.verbose)
-	copyfile(options.outputdir + "/RDP/assigned_taxonomy.txt", options.outputdir + "/ASVs_taxonomy.fasta")
+	copyfile(options.outputdir + "/RDP/assigned_taxonomy.txt", options.outputdir + "/ASVs_taxonomy.txt")
 	logger(BLUE + "... done" + ENDC, logging_file, display = True)
 
 
