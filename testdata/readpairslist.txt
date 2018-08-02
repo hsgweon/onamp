@@ -1,4 +1,0 @@
-# Lines beginning with "#" is ignored. 
-# SampleID	Filename for forward reads	Filename for reverse reads
-H12BB43	H12BB43_S240_L001_R1_001.fastq.gz	H12BB43_S240_L001_R2_001.fastq.gz
-H12DSPINHK9	H12DSPINHK9_S336_L001_R1_001.fastq.gz	H12DSPINHK9_S336_L001_R2_001.fastq.gz
