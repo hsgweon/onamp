@@ -69,7 +69,7 @@ source deactivate
 ```
 source activate onamp_env
 
-cd onamp/testdata
+cd ~/onamp/testdata
 onamp_createreadpairslist -i rawdata -o readpairslist.txt
 onamp -i rawdata -o onamp_output --amplicontype ITS2 -l readpairslist.txt
 ```
