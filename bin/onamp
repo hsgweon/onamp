@@ -139,7 +139,10 @@ if __name__ == '__main__':
 	downloadDB(
 		url = url,
 		md5 = md5,
-		output_dir = options.outputdir + "/db")
+		output_dir = options.outputdir + "/db",
+		logging_file = logging_file,
+		summary_file = summary_file,
+		verbose = options.verbose)
 	logger(BLUE + "... done" + ENDC, logging_file, display = True)
 
 
@@ -185,7 +188,6 @@ if __name__ == '__main__':
 		logging_file = logging_file,
 		summary_file = summary_file,
 		verbose = options.verbose)
-	copyfile(options.outputdir + "/dada2/ASVs_counts.txt", options.outputdir + "/ASVs_counts.txt")
 	logger(BLUE + "... done" + ENDC, logging_file, display = True)
 
 
@@ -201,7 +203,7 @@ if __name__ == '__main__':
 		logging_file = logging_file,
 		summary_file = summary_file,
 		verbose = options.verbose)
-	copyfile(options.outputdir + "/ITSx/ASVs_ITSx.ITS2.fasta", options.outputdir + "/ASVs.fasta")
+	copyfile(options.outputdir + "/ITSx/ASVs_ITSx.ITS2.fasta.lengthfiltered", options.outputdir + "/ASVs.fasta")
 	logger(BLUE + "... done" + ENDC, logging_file, display = True)
 
 
@@ -211,7 +213,7 @@ if __name__ == '__main__':
 
 	logger("Running RDP Classifier", logging_file, display = True)
 	run_RDPClassifier(
-		input_fasta = options.outputdir + "/ITSx/ASVs_ITSx.ITS2.fasta",
+		input_fasta = options.outputdir + "/ASVs.fasta",
 		output_dir = options.outputdir + "/RDP",
 		rdpclassifier_properties = options.outputdir + "/db/" + rdp_properties,
 		logging_file = logging_file,
@@ -221,13 +223,37 @@ if __name__ == '__main__':
 	logger(BLUE + "... done" + ENDC, logging_file, display = True)
 
 
+	#################
+	# Sort out data #
+	#################
+
+	logger("Reflecting ITSx results to ASV table", logging_file, display = True)
+	filterASVtable(
+		input_table = options.outputdir + "/dada2/ASVs_dada2_counts.txt",
+		input_fasta = options.outputdir + "/ASVs.fasta",
+		output_dir = options.outputdir,
+		logging_file = logging_file,
+		summary_file = summary_file,
+		verbose = options.verbose)
+	logger(BLUE + "... done" + ENDC, logging_file, display = True)
+
+
 	#######
 	# End #
 	#######
 
 	logger("Done - onamp completed." + ENDC, logging_file, display = True)
-
 	logging_file.close()
 	summary_file.close()
 
 	exit(0)
+
+
+
+
+
+
+
+
+
+

@@ -5,11 +5,11 @@ import argparse, sys, os, argparse, shutil, subprocess, gzip, bz2
 from onamp.logger import *
 from onamp.runcmd import *
 
-__version__    = 1.1
+__version__    = 0.1
 
 __author__     = "Hyun Soon Gweon"
-__copyright__  = "Copyright 2015, Originally from the PIPITS Project"
-__credits__    = ["Hyun Soon Gweon", "Anna Oliver", "Joanne Taylor", "Tim Booth", "Melanie Gibbs", "Daniel S. Read", "Robert I. Griffiths", "Karsten Schonrogge"]
+__copyright__  = "Copyright 2015"
+__credits__    = ["Hyun Soon Gweon"]
 __license__    = "GPL"
 __maintainer__ = "Hyun Soon Gweon"
 __email__      = "h.s.gweon@reading.ac.uk"
@@ -56,7 +56,10 @@ def get_md5(filename):
 def downloadDB(
     url,
     md5,
-    output_dir):
+    output_dir,
+    logging_file, 
+    summary_file, 
+    verbose):
 
     import progressbar
     import requests
@@ -72,13 +75,13 @@ def downloadDB(
 
     # Check if unpacked file exists
     DOWNLOADDB = True
-    print(output_dir + "/" + filename)
+    # print(output_dir + "/" + filename)
     if os.path.isfile(output_dir + "/" + filename):
         if get_md5(output_dir + "/" + filename) != md5:
-            print("File exits, but seems to be different.")
+            logger("... File exits, but seems to be different, so re-downloading...", logging_file, display = True)
             DOWNLOADDB = True
         else:
-            print("File exits. Skipping.")
+            logger("... File exits. Skipping downloading and preparing to unpack the existing file...", logging_file, display = True)
             DOWNLOADDB = False
 
     if DOWNLOADDB:
@@ -116,7 +119,7 @@ def downloadDB(
             exit(1)
 
     # Unpack
-    print("Unpacking...")
+    logger("... Unpacking", logging_file, display = True)
     tar = tarfile.open(output_dir + "/" + filename)
     tar.extractall(path=output_dir)
     tar.close()
@@ -253,11 +256,21 @@ def run_ITSx(
 
     if its_region == "ITS2":
         filename = output_dir  + "/ASVs_ITSx.ITS2.fasta"
-    
+
+
+    # Remove short sequences (below 100bp)
+    cmd = " ".join([
+            "vsearch",
+            "--fastx_filter", filename, 
+            "--fastq_minlen 100",
+            "--fasta_width 0",
+            "--fastaout", filename + ".lengthfiltered"])
+    run_cmd(cmd, logging_file, verbose)
+
+
     # Count
     numberofsequences = 0
-    numberofsequences += int(getFileLineCount(filename) / 2)
-
+    numberofsequences += int(getFileLineCount(filename + ".lengthfiltered") / 2)
 
     if numberofsequences == 0: 
         logger("ERROR: You have 0 sequences after running ITSx...", logging_file, display = True)
@@ -292,6 +305,20 @@ def run_RDPClassifier(
                     "-c", "0.5"])
     run_cmd(cmd, logging_file, verbose)
 
+
+def filterASVtable(
+    input_table,
+    input_fasta,
+    output_dir,
+    logging_file,
+    summary_file,
+    verbose):
+
+    cmd = " ".join(["onamp_filterASVtable",
+                    "--otu", input_table,
+                    "--fas", input_fasta,
+                    "--out", output_dir + "/ASVs_counts.txt"])
+    run_cmd(cmd, logging_file, verbose)
 
 
 
