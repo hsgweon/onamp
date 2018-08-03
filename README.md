@@ -1,6 +1,7 @@
 # ONAMP
 
-On ensure you have R installed and necessary packages are in place:
+A pipeline to process ITS2 sequences from National Honey Monitoring Scheme - but can be used with any amplicons PCR'ed with a set of ITS2 primers.
+
 
 ## Installation
 
@@ -34,8 +35,7 @@ cd ~
 conda create -n onamp_env -y python=3.6 progressbar2 requests rdptools itsx vsearch -c bioconda
 source activate onamp_env
 git clone https://github.com/hsgweon/onamp.git
-cd onamp
-python setup.py install
+pip install ./onamp
 source deactivate
 ```
 
@@ -182,3 +182,10 @@ Number of ASVs (after dada2): 21
 Number of ASVs (after ITSx): 18
 ```
 
+
+
+## To uninstall ONMAP completely:
+
+```
+pip uninstall onamp
+```
