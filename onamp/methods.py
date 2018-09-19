@@ -214,10 +214,7 @@ def run_dada2(
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
 
-    cmd = " ".join([
-            "onamp_dada2",
-            "-i", input_dir, 
-            "-o", output_dir])
+    cmd = " ".join(["onamp_dada2", input_dir, output_dir])
 
     run_cmd(cmd, logging_file, verbose)
 

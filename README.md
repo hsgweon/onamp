@@ -5,12 +5,26 @@ A pipeline to process ITS2 sequences from National Honey Monitoring Scheme - but
 
 ## Installation
 
-### R
-Within R, check to see if **dada2** and **argparse** is installed
+### ONAMP
+
+In your home directory, copy and paste the following (line by line):
 
 ```
+cd ~
+conda create -n onamp_env -y python=3.6 progressbar2 requests rdptools itsx vsearch trim-galore -c bioconda
+source activate onamp_env
+git clone https://github.com/hsgweon/onamp.git
+pip install ./onamp
+source deactivate
+```
+
+### R DADA2 package
+
+Within R, check to see if **dada2** is installed:
+
+```
+R
 library(dada2)
-library(argparse)
 ```
 
 If not, then install them with:
@@ -18,26 +32,12 @@ If not, then install them with:
 ```
 source("http://bioconductor.org/biocLite.R")
 biocLite("dada2")
-
-install.packages(argparse)
 ```
 
-Check again to see if the packages are all in place:
+Check again to see if the packages are all in place.
 
 
 
-### ONAMP
-
-in your home directory, copy and paste the following (line by line):
-
-```
-cd ~
-conda create -n onamp_env -y python=3.6 progressbar2 requests rdptools itsx vsearch -c bioconda
-source activate onamp_env
-git clone https://github.com/hsgweon/onamp.git
-pip install ./onamp
-source deactivate
-```
 
 *That's it!*
 
