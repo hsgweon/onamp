@@ -21,9 +21,11 @@
 # input_directory <- args$indir
 # output_directory <- args$outdir
 
+if (!requireNamespace("BiocManager", quietly = TRUE))
+   install.packages("BiocManager")
+BiocManager::install("dada2", ask = FALSE)
 
-source("https://bioconductor.org/biocLite.R")
-require("dada2")
+library("dada2")
 
 args <- commandArgs(trailingOnly = TRUE)
 

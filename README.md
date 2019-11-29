@@ -1,11 +1,11 @@
-# ONAMP
+# HONEYPI
 
 A pipeline to process ITS2 sequences from National Honey Monitoring Scheme - but can be used with any amplicons PCR'ed with a set of ITS2 primers.
 
 
 ## Installation
 
-### ONAMP
+### HONEYPI
 
 In your home directory, copy and paste the following (line by line):
 
@@ -30,8 +30,8 @@ library(dada2)
 If not, then install them with:
 
 ```
-source("http://bioconductor.org/biocLite.R")
-biocLite("dada2")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("dada2", ask = FALSE)
 ```
 
 Check again to see if the packages are all in place.
@@ -42,7 +42,7 @@ Check again to see if the packages are all in place.
 *That's it!*
 
 
-## Running ONAMP
+## Running HONEYPI
 
 Since we just created a sandbox "onamp_env" in which all tools (except R and its packages) are installed, we need to be running ONAMP and processing data within the environment:
 
