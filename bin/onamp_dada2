@@ -21,9 +21,9 @@
 # input_directory <- args$indir
 # output_directory <- args$outdir
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-   install.packages("BiocManager")
-BiocManager::install("dada2", ask = FALSE)
+## This is manually done by the USER now.
+# if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+# BiocManager::install("dada2", ask = FALSE)
 
 library("dada2")
 
