@@ -34,6 +34,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocMana
 BiocManager::install("dada2", ask = FALSE)
 ```
 If it asks "Would you like to use a personal library instead?", say yes. It will ask for a location, and again just say yes.
+When all done, type "quit()" and say "n".
 
 Check again to see if the packages are all in place.
 
