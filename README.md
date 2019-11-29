@@ -53,6 +53,7 @@ source activate onamp_env
 Then, go to a directory where with your rawdata directory is located, and create a readpairslist file. This file is needed to ensure all files and sample names are correctly labelled. It does some internal checks to make sure there are no human errors with samples names etc. 
 
 ```
+cd onamp/testdata
 onamp_createreadpairslist -i rawdata_directory -o readpairslist.txt
 onamp -i rawdata_directory -o onamp_output --amplicontype ITS2 -l readpairslist.txt
 ```
