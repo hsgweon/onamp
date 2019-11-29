@@ -33,7 +33,7 @@ If not, then install them with:
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install("dada2", ask = FALSE)
 ```
-If it asks "Would you like to use a personal library instead?", say yes.
+If it asks "Would you like to use a personal library instead?", say yes. It will ask for a location, and again just say yes.
 
 Check again to see if the packages are all in place.
 
