@@ -1,6 +1,6 @@
 # HONEYPI
 
-A pipeline to process ITS2 sequences from National Honey Monitoring Scheme - but can be used with any amplicons PCR'ed with a set of ITS2 primers.
+A pipeline to process ITS2 sequences from honey and plants sequences from National Honey Monitoring Scheme - but can be used with any amplicons PCR'ed with a set of ITS2 primers.
 
 
 ## Installation
@@ -64,7 +64,7 @@ source deactivate
 ```
 
 
-## Testing ONAMP
+## Testing HONEYPI
 
 ```
 source activate onamp_env
@@ -184,7 +184,7 @@ Number of ASVs (after ITSx): 18
 
 
 
-## To uninstall ONMAP completely:
+## To uninstall HONEYPI completely:
 
 ```
 pip uninstall onamp
